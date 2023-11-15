@@ -7,10 +7,11 @@ using namespace std;
 
 class Student{
 public:
+  Student();
   char* getFirstName();
   char* getLastName();
-  int* getStudentID();
-  float* getGPA();
+  int getStudentID();
+  float getGPA();
   void printInfo();
 protected:
   char firstName[80];

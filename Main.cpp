@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include "Student.h"
+#include "Node.h"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ void GETSTUDENTINFO();
 int main(){
   bool active = true;
   char terminal[80];
+  Node* head = NULL;
   cout << "List of commands: ADDNODE, GETSTUDENTINFO, DELETENODE, QUIT" << endl;
   while(active){
     cout << "Enter a command: " << endl;
@@ -24,9 +26,15 @@ int main(){
     }
     //assume good input
     if(!strcmp(terminal, "ADDNODE")){
-      
+      Node();
     }else if(!strcmp(terminal, "GETSTUDENTINFO")){
-      
+      Node* currentNode = head;
+      if(currentNode == NULL){
+	
+      }
+      while(currentNode != NULL){
+	
+      }
     }else if(!strcmp(terminal, "DELETENODE")){
       
     }else if(!strcmp(terminal, "QUIT")){
