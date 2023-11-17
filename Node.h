@@ -8,13 +8,14 @@ using namespace std;
 
 class Node{
 public:
-  Node();
+  Node(Student* &studentIN);
   void setHead(Node* &node);
   void setTail(Node* &node);
+  Node* getHead();
+  Student* getStudent();
 protected:
   Student* student;
   Node* head;
-  Node* tail;
 };
 
 #endif
