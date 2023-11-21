@@ -20,3 +20,24 @@ Student::Student(){
   cout << "Added student" << endl;
   cin.clear();
 }
+
+char* Student::getFirstName(){
+  return firstName;
+}
+
+char* Student::getLastName(){
+  return lastName;
+}
+
+int Student::getStudentID(){
+  return studentID;
+}
+
+float Student::getGPA(){
+  return GPA;
+}
+
+void Student::printInfo(){
+  cout << "Student Name: " << firstName << " " << lastName << ", ID: " << studentID << ", GPA: " << GPA << endl;
+  return;
+}
