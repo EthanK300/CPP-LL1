@@ -7,6 +7,7 @@ using namespace std;
 
 class Student{
 public:
+  Student();
   char* getFirstName();
   char* getLastName();
   int* getStudentID();

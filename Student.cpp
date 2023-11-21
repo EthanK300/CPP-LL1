@@ -14,7 +14,7 @@ Student::Student(){
   cout << "Input student ID: " << endl;
   cin.clear();
   cin >> studentID;
-  cou << "Input student's GPA: " << endl;
+  cout << "Input student's GPA: " << endl;
   cin.clear();
   cin >> GPA;
   cout << "Added student" << endl;
