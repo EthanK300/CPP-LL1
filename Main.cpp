@@ -5,9 +5,9 @@
 
 using namespace std;
 
-void ADDNODE();
-void DELETENODE();
-void GETSTUDENTINFO();
+void ADDNODE(Node* &head);
+void DELETENODE(Node* &head);
+void GETSTUDENTINFO(Node* &head);
 
 /*
 Author Ethan K, list linked by nodes pointing to each other, sorted by student id..... why am i here
@@ -31,11 +31,11 @@ int main(){
     //assume good input
     Node* currentNode = head;
     if(!strcmp(terminal, "ADDNODE")){
-      ADDNOD(head);
+      ADDNODE(head);
     }else if(!strcmp(terminal, "GETSTUDENTINFO")){
       GETSTUDENTINFO(head);
     }else if(!strcmp(terminal, "DELETENODE")){
-      DELETENODE(heaD);
+      DELETENODE(head);
     }else if(!strcmp(terminal, "QUIT")){
       cout << "Quitted" << endl;
       return 0;
@@ -53,7 +53,7 @@ void ADDNODE(Node* &headNode){
   }else{
     Node* currentHead = headNode;
     while(currentHead != NULL){
-      if(headNode->getStudent()->getStudentID < node->getStudent()->getStudentID()){
+      if(headNode->getStudent()->getStudentID() < node->getStudent()->getStudentID()){
 	
       }else{
 	node->setHead(headNode);

@@ -16,7 +16,6 @@ public:
 protected:
   Student* student;
   Node* head;
->>>>>>> cf863f6ac43e8c633e7e27afadc863d6f961e67d
 };
 
 #endif
