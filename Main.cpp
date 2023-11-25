@@ -50,38 +50,80 @@ void ADDNODE(Node* &headNode){
   Node* node = new Node(student);
   if(headNode == NULL){
     headNode = node;
+    return;
   }else{
     Node* currentHead = headNode;
-    while(currentHead != NULL){
-      if(headNode->getStudent()->getStudentID() < node->getStudent()->getStudentID()){
-	
-      }else{
-	node->setHead(headNode);
-	headNode = node;
-	return;
-      }
+    Node* beforeHead = NULL;
+    while(currentHead->getStudent()->getStudentID() < node->getStudent()->getStudentID()){
+      beforeHead = currentHead;
+      currentHead = currentHead->getHead();
     }
+    beforeHead->setHead(node);
+    node->setHead(currentHead);
+    return;
   }
 }
 
 void DELETENODE(Node* &headNode){
-
-}
-
-void GETSTUDENTINFO(Node* &headNode){
   bool parseable = true;
   int ID = 0;
   char terminal[80];
+  Node* currentNode = headNode;
   while(parseable){
     cout << "Enter student ID: " << endl;
     cin.clear();
     cin >> terminal;
     ID = atoi(terminal);
   }
-  if(headNode == NULL){
+  if(currentNode == NULL){
+    cout << "Nothing to search for! there are no nodes!" << endl;
+    return;
+  }
+  while(currentNode->getStudent()->getStudentID() != ID){
+    currentNode = currentNode->getHead();
+  }
+  while((!strcmp(terminal, "y")) || (!strcmp(terminal, "n")) || (!strcmp(terminal, "QUIT"))){
+    cin.get();
+    cout << "Delete the student? y/n" << endl;
+    cin.clear();
+    cin >> terminal;
+    if(!strcmp(terminal, "y")){
+      //delete the student(?) or the node(?)
+
+
+      
+    }else if(!strcmp(terminal, "n")){
+      cout << "Deleted nothing." << endl;
+    }else if(!strcmp(terminal, "QUIT")){
+      cout << "Quitted." << endl;
+      exit(0);
+    }else{
+      cout << "Bad input." << endl;
+    }
+  }
+  return;
+}
+
+void GETSTUDENTINFO(Node* &headNode){
+  bool parseable = true;
+  int ID = 0;
+  char terminal[80];
+  Node* currentNode = headNode;
+  while(parseable){
+    cout << "Enter student ID: " << endl;
+    cin.clear();
+    cin >> terminal;
+    ID = atoi(terminal);
+  }
+  if(currentNode == NULL){
     cout << "Nothing to search for! there are no nodes!" << endl;
   }
-  while(headNode != NULL){
-    
+  while(currentNode != NULL){
+    if(currentNode->getStudent()->getStudentID() == ID){
+      currentNode->getStudent()->printInfo();
+    }else{
+      currentNode = currentNode->getHead();
+    }
   }
+  return;
 }
