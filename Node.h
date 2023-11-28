@@ -12,6 +12,7 @@ public:
   void setHead(Node* &node);
   void setTail(Node* &node);
   Node* getHead();
+  ~Node();
   Student* getStudent();
 protected:
   Student* student;

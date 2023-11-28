@@ -6,6 +6,11 @@ using namespace std;
 
 Node::Node(Student* &studentIN){
   student = studentIN;
+  head = NULL;
+}
+
+Node::~Node(){
+  delete student;
 }
 
 void Node::setHead(Node* &node){
