@@ -8,7 +8,7 @@ using namespace std;
 
 class Node{
 public:
-  Node(Student* &studentIN);
+  Node(Student* studentIN);
   void setHead(Node* &node);
   void setTail(Node* &node);
   Node* getHead();

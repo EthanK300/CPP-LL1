@@ -54,11 +54,15 @@ void ADDNODE(Node* &headNode){
   }else{
     Node* currentHead = headNode;
     Node* beforeHead = NULL;
-    while(currentHead->getStudent()->getStudentID() < node->getStudent()->getStudentID()){
+    bool end = false;
+    while((end == false) && (currentHead->getStudent()->getStudentID() > node->getStudent()->getStudentID())){
       if(beforeHead != NULL){
 	beforeHead = currentHead;
       }
       currentHead = currentHead->getHead();
+      if(currentHead == NULL){
+	end = true;
+      }
     }
     if(beforeHead != NULL){
       beforeHead->setHead(node);
