@@ -11,9 +11,12 @@ void GETSTUDENTINFO(Node* &head);
 
 /*
 Author Ethan K, list linked by nodes pointing to each other, sorted by student id..... why am i here
- */
+this is actually so dumb
+like what the fu--
+*/
 
 int main(){
+  //main running loop
   bool active = true;
   char terminal[80];
   Node* head = NULL;
@@ -44,7 +47,7 @@ int main(){
     }
   }
 }
-
+//add nodes, dynamically reorder list
 void ADDNODE(Node* &headNode){
   Student* student = new Student();
   Node* node = new Node(student);
@@ -55,34 +58,38 @@ void ADDNODE(Node* &headNode){
     Node* currentHead = headNode;
     Node* beforeHead = NULL;
     bool end = false;
-    while((end == false) && (currentHead->getStudent()->getStudentID() > node->getStudent()->getStudentID())){
+    while((end == false) && (currentHead->getStudent()->getStudentID() < node->getStudent()->getStudentID())){
+      if(currentHead->getHead() == NULL && beforeHead == NULL){
+	node->setHead(currentHead);
+	headNode = node;
+	return;
+      }
       if(beforeHead != NULL){
 	beforeHead = currentHead;
       }
-      currentHead = currentHead->getHead();
-      if(currentHead == NULL){
-	end = true;
+      if(currentHead->getHead() == NULL){
+	currentHead->setHead(node);
+	return;
       }
+      currentHead = currentHead->getHead();
     }
     if(beforeHead != NULL){
       beforeHead->setHead(node);
+    }else{
+      node->setHead(currentHead);
+      headNode = node;
     }
     node->setHead(currentHead);
-    Node* currentHead2 = headNode;
-    while(currentHead2 != NULL){
-      currentHead2 = currentHead2->getHead();
-    }
-    cout << headNode->getHead()->getStudent()->getStudentID() << endl;
     return;
   }
 }
-
+//delete nodes, dynamically order list
 void DELETENODE(Node* &headNode){
   bool parseable = true;
   int ID = 0;
   char terminal[80];
   Node* currentNode = headNode;
-  Node* previousNode = NULL;
+  Node* beforeNode = NULL;
   cout << "Enter student ID: " << endl;
   cin.clear();
   cin >> terminal;
@@ -92,8 +99,15 @@ void DELETENODE(Node* &headNode){
     return;
   }
   while(currentNode->getStudent()->getStudentID() != ID){
-    previousNode = currentNode;
     currentNode = currentNode->getHead();
+    if(currentNode == NULL){
+      cout << "No student with that ID!" << endl;
+      return;
+    }
+    if(currentNode->getHead() == NULL){
+      cout << "No student with that ID!" << endl;
+      return;
+    }
   }
   while(true){
     cin.get();
@@ -103,11 +117,18 @@ void DELETENODE(Node* &headNode){
     if(!strcmp(terminal, "y")){
       //delete the student(?) or the node(?)
       Node* newHead = currentNode->getHead();
-      if(previousNode != NULL){
-	previousNode->setHead(newHead);
+      if(newHead == NULL){
+	if(beforeNode == NULL){
+	  headNode = NULL;
+	}else{
+	  beforeNode->nullifyHead();
+	}
+      }else if(beforeNode == NULL){
+	headNode = newHead;
+      }else{
+	beforeNode->setHead(newHead);
       }
       delete currentNode;
-      headNode = NULL;
       cout << "Deleted student" << endl;
       return;
     }else if(!strcmp(terminal, "n")){
@@ -120,7 +141,7 @@ void DELETENODE(Node* &headNode){
     }
   }
 }
-
+//search for student by id and print info
 void GETSTUDENTINFO(Node* &headNode){
   bool parseable = true;
   int ID = 0;
@@ -137,7 +158,6 @@ void GETSTUDENTINFO(Node* &headNode){
       return;
     }
     while(currentNode != NULL){
-      cout << currentNode->getStudent()->getStudentID() << endl;
       if(currentNode->getStudent()->getStudentID() == ID){
 	currentNode->getStudent()->printInfo();
 	return;

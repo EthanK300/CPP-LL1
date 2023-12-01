@@ -14,6 +14,7 @@ public:
   Node* getHead();
   ~Node();
   Student* getStudent();
+  void nullifyHead();
 protected:
   Student* student;
   Node* head;

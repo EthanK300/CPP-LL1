@@ -24,3 +24,7 @@ Node* Node::getHead(){
 Student* Node::getStudent(){
   return student;
 }
+
+void Node::nullifyHead(){
+  head = NULL;
+}
