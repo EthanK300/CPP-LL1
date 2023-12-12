@@ -57,16 +57,12 @@ void ADDNODE(Node* &headNode){
   }else{
     Node* currentHead = headNode;
     Node* beforeHead = NULL;
-    bool end = false;
-    while((end == false) && (currentHead->getStudent()->getStudentID() < node->getStudent()->getStudentID())){
+    while(currentHead->getStudent()->getStudentID() < node->getStudent()->getStudentID()){
       if(currentHead->getHead() == NULL && beforeHead == NULL){
-	node->setHead(currentHead);
-	headNode = node;
+	currentHead->setHead(node);
 	return;
       }
-      if(beforeHead != NULL){
-	beforeHead = currentHead;
-      }
+      beforeHead = currentHead;
       if(currentHead->getHead() == NULL){
 	currentHead->setHead(node);
 	return;
@@ -99,14 +95,12 @@ void DELETENODE(Node* &headNode){
     return;
   }
   while(currentNode->getStudent()->getStudentID() != ID){
-    currentNode = currentNode->getHead();
-    if(currentNode == NULL){
-      cout << "No student with that ID!" << endl;
-      return;
-    }
     if(currentNode->getHead() == NULL){
       cout << "No student with that ID!" << endl;
       return;
+    }else{
+      beforeNode = currentNode;
+      currentNode = currentNode->getHead();
     }
   }
   while(true){
