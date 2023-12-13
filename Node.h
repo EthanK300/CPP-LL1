@@ -9,9 +9,9 @@ using namespace std;
 class Node{
 public:
   Node(Student* studentIN);
-  void setHead(Node* &node);
+  void setNext(Node* &node);
   void setTail(Node* &node);
-  Node* getHead();
+  Node* getNext();
   ~Node();
   Student* getStudent();
   void nullifyHead();

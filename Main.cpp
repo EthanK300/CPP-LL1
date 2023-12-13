@@ -58,24 +58,24 @@ void ADDNODE(Node* &headNode){
     Node* currentHead = headNode;
     Node* beforeHead = NULL;
     while(currentHead->getStudent()->getStudentID() < node->getStudent()->getStudentID()){
-      if(currentHead->getHead() == NULL && beforeHead == NULL){
-	currentHead->setHead(node);
+      if(currentHead->getNext() == NULL && beforeHead == NULL){
+	currentHead->setNext(node);
 	return;
       }
       beforeHead = currentHead;
-      if(currentHead->getHead() == NULL){
-	currentHead->setHead(node);
+      if(currentHead->getNext() == NULL){
+	currentHead->setNext(node);
 	return;
       }
-      currentHead = currentHead->getHead();
+      currentHead = currentHead->getNext();
     }
     if(beforeHead != NULL){
-      beforeHead->setHead(node);
+      beforeHead->setNext(node);
     }else{
-      node->setHead(currentHead);
+      node->setNext(currentHead);
       headNode = node;
     }
-    node->setHead(currentHead);
+    node->setNext(currentHead);
     return;
   }
 }
@@ -95,12 +95,12 @@ void DELETENODE(Node* &headNode){
     return;
   }
   while(currentNode->getStudent()->getStudentID() != ID){
-    if(currentNode->getHead() == NULL){
+    if(currentNode->getNext() == NULL){
       cout << "No student with that ID!" << endl;
       return;
     }else{
       beforeNode = currentNode;
-      currentNode = currentNode->getHead();
+      currentNode = currentNode->getNext();
     }
   }
   while(true){
@@ -110,7 +110,7 @@ void DELETENODE(Node* &headNode){
     cin >> terminal;
     if(!strcmp(terminal, "y")){
       //delete the student(?) or the node(?)
-      Node* newHead = currentNode->getHead();
+      Node* newHead = currentNode->getNext();
       if(newHead == NULL){
 	if(beforeNode == NULL){
 	  headNode = NULL;
@@ -120,7 +120,7 @@ void DELETENODE(Node* &headNode){
       }else if(beforeNode == NULL){
 	headNode = newHead;
       }else{
-	beforeNode->setHead(newHead);
+	beforeNode->setNext(newHead);
       }
       delete currentNode;
       cout << "Deleted student" << endl;
@@ -156,7 +156,7 @@ void GETSTUDENTINFO(Node* &headNode){
 	currentNode->getStudent()->printInfo();
 	return;
       }else{
-	currentNode = currentNode->getHead();
+	currentNode = currentNode->getNext();
 	if(currentNode == NULL){
 	  cout << "No student with that ID!" << endl;
 	  return;

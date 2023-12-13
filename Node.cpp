@@ -13,11 +13,11 @@ Node::~Node(){
   delete student;
 }
 
-void Node::setHead(Node* &node){
+void Node::setNext(Node* &node){
   head = node;
 }
 
-Node* Node::getHead(){
+Node* Node::getNext(){
   return head;
 }
 
